@@ -3,8 +3,7 @@ version: '2.1'
 
 services:
   keyboard:
-    # image: windesheimwinny/keyboard:latest
-    build: ./docker
+    image: windesheimwinny/keyboard:latest
     networks:
       - ros
     restart: always
