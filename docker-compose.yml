@@ -3,10 +3,14 @@ version: '2.1'
 
 services:
   keyboard:
-    image: windesheimwinny/keyboard:latest
+    # image: windesheimwinny/keyboard:latest
+    build: ./docker
     networks:
       - ros
     restart: always
+    command: roslaunch teleop_twist_joy teleop.launch
+    devices:
+      - "/dev/input/js0:/dev/input/js0"
 
 networks:
   ros:
