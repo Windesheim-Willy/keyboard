@@ -5,7 +5,7 @@ import time
 
 # Starts a new node
 rospy.init_node('move_willy', anonymous=True)
-velocity_publisher = rospy.Publisher('turtle1/cmd_vel', Twist, queue_size=10)
+velocity_publisher = rospy.Publisher('cmd_vel', Twist, queue_size=10)
 vel_msg = Twist()
 
 
@@ -76,9 +76,13 @@ def move(isForward):
             current_distance= speed*(t1-t0)
             r.sleep()
         #After the loop, stops the robot
-        vel_msg.linear.x = 0.0
+        while(x<5):
+            x = x+1
+            vel_msg.linear.x = 0.0
+            velocity_publisher.publish(vel_msg)
+            r.sleep()
         #Force the robot to stop
-        velocity_publisher.publish(vel_msg)
+        
         question()
 
 def turn(isLeft):
@@ -122,7 +126,11 @@ def turn(isLeft):
             current_distance= speed*(t1-t0)
             r.sleep()
         #After the loop, stops the robot
-        vel_msg.angular.z = 0.0
+        while(x<5):
+            x = x+1
+            vel_msg.angular.z = 0.0
+            velocity_publisher.publish(vel_msg)
+            r.sleep()
         #Force the robot to stop
         velocity_publisher.publish(vel_msg)
         question()
