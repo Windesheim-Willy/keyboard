@@ -7,6 +7,9 @@ services:
     networks:
       - ros
     restart: always
+    command: roslaunch teleop_twist_joy teleop.launch
+    devices:
+      - "/dev/input/js0:/dev/input/js0"
 
 networks:
   ros:
