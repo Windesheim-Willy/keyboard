@@ -1,0 +1,20 @@
+#!/bin/bash
+#Installing Keyboard and Joystick
+set -e
+
+COMPONENTDIR=$(pwd)
+ROS_DISTRO="kinetic"
+
+# Make sure only root can run our script
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+# Install needed packages
+apt-get update && apt-get install -y \
+  ros-kinetic-rosserial \
+  ros-kinetic-rosserial-arduino \
+  ros-kinetic-rosnode \
+  ros-kinetic-teleop-twist-joy
+  
